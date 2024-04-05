@@ -1,12 +1,15 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import Landing from './pages/Landing';
+import AppRoutes from './app-routes';
 
 import './assets/styles/global.css';
 
 function App() {
   return (
-    <Landing />
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   );
 }
 
