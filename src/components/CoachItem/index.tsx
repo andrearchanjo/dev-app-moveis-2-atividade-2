@@ -1,32 +1,59 @@
 import React from "react";
 
-import './styles.css';
+import api from "../../services/api";
 
 import whatsappIcon from '../../assets/images/icons/whatsapp.svg'
 
-function CoachItem() {
+import './styles.css';
+export interface Coach {
+    id: number;
+    avatar: string;
+    bio: string;
+    cost: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+}
+  
+interface CoachItemProps {
+    coach: Coach;
+}
+  
+const CoachItem: React.FC<CoachItemProps> = ({ coach }) => {
+    function createNewConnection() {
+        api.post('connections', {
+            coach_id: coach.id,
+        });
+    }
+  
     return (
         <article className="coach-item">
             <header>
-                <img src="https://avatars.githubusercontent.com/u/20603528?v=4" alt="André" />
-                <div>
-                    <strong>André Archanjo Nunes Coelho</strong>
-                    <span>Aluno da Pós</span>
-                </div>
+            <img src={coach.avatar} alt={coach.name} />
+            <div>
+                <strong>{coach.name}</strong>
+                <span>{coach.subject}</span>
+            </div>
             </header>
-
-            <p>
-                Estudante de novas tecnologias de programação mobile.
-            </p>
-
+  
+            <p>{coach.bio}</p>
+  
             <footer>
-                <button type="button">
-                    <img src={whatsappIcon} alt="Whatsapp" />
-                    Entrar em Contato
-                </button>
+                <p>Preço/Hora
+                    <strong>R$ {coach.cost}</strong>
+                </p>
+          
+                <a
+                    target="_blank" 
+                    onClick={createNewConnection} 
+                    href={`https://wa.me/${coach.whatsapp}`}
+                >
+                    <img src={whatsappIcon} alt="Whatsapp"/>
+                    Entrar em contato
+                </a>
             </footer>
         </article>
     );
-}
+  }
 
 export default CoachItem;

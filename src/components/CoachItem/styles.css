@@ -35,7 +35,7 @@
 }
 
 .coach-item > p {
-    padding: 0.2rem;
+    padding: 0 2rem;
     font-size: 1.6rem;
     line-height: 2.8rem;
 }
@@ -50,7 +50,13 @@
     justify-content: space-between;
 }
 
-.coach-item footer button {
+.coach-item footer p strong {
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    display: block;
+}
+
+.coach-item footer a {
     width: 20rem;
     height: 5.6rem;
     background: var(--color-secondary);
@@ -63,9 +69,10 @@
     align-items: center;
     justify-content: space-evenly;
     transition: 0.2s;
+    text-decoration: none;
 }
 
-.coach-item footer button:hover {
+.coach-item footer a:hover {
     background: var(--color-secondary-dark);
 }
 
